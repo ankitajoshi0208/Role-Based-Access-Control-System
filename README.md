@@ -1,4 +1,4 @@
-# RBAC Capstone Project
+# Role-Based-Access-Control-System
 
 A Role-Based Access Control (RBAC) web application with a Node/Express + MongoDB backend and a React frontend. Users can register, log in, and create/read/update/delete posts according to their assigned role (admin, editor, viewer).
 
@@ -67,7 +67,7 @@ PORT=7002
 JWT_SECRET=your_jwt_secret_here
 NODE_ENV=development
 ```
-#Screenshots
+## Screenshots
 <img width="1350" height="606" alt="image" src="https://github.com/user-attachments/assets/f9031057-c7a0-42cf-8ff1-3a1b0e843a49" />
 <img width="1347" height="596" alt="image" src="https://github.com/user-attachments/assets/efaf90a1-7e52-480b-887a-e881b3111066" />
 
