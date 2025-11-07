@@ -68,7 +68,12 @@ JWT_SECRET=your_jwt_secret_here
 NODE_ENV=development
 ```
 ## Screenshots
-<img width="1350" height="606" alt="image" src="https://github.com/user-attachments/assets/f9031057-c7a0-42cf-8ff1-3a1b0e843a49" />
-<img width="1347" height="596" alt="image" src="https://github.com/user-attachments/assets/efaf90a1-7e52-480b-887a-e881b3111066" />
+<img width="1351" height="606" alt="image" src="https://github.com/user-attachments/assets/40c4aa23-c3d3-4be1-9494-7e716398f1fd" />
+<img width="1353" height="595" alt="image" src="https://github.com/user-attachments/assets/16d87218-cff4-4023-b714-5dbb9b839028" />
+<img width="574" height="588" alt="image" src="https://github.com/user-attachments/assets/a8a6b271-140d-4ddd-8792-88b4c64b618c" />
+<img width="523" height="597" alt="image" src="https://github.com/user-attachments/assets/5121398b-9b1b-4ddf-ad16-ff040c082ce0" />
+
+
+
 
 
