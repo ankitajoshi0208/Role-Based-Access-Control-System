@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AuthContext } from "../components/AuthContext";
 import { loginUser } from "../api/api";
+import "./Login.css";
 
 const Login = ({ onSwitchToRegister }) => {
   const { login } = useContext(AuthContext);
@@ -14,11 +15,9 @@ const Login = ({ onSwitchToRegister }) => {
     e.preventDefault();
     try {
       const res = await loginUser(form);
-      const { data } = await loginUser(form);
-  localStorage.setItem("token", res.data.token);
-  localStorage.setItem("role", res.data.user.role);
-  localStorage.setItem("username", res.data.user.username);
-
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("role", res.data.user.role);
+      localStorage.setItem("username", res.data.user.username);
       login(res.data.user);
     } catch (err) {
       setError("Invalid credentials");
@@ -27,25 +26,47 @@ const Login = ({ onSwitchToRegister }) => {
 
   return (
     <div className="login-container">
-      <h2>Login</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      <div className="login-logo">
+        <h1>RBAC System</h1>
+      </div>
+      
+      <h2>Sign in</h2>
+      
+      {error && <div className="error-message">{error}</div>}
+      
       <form onSubmit={handleSubmit}>
-        <input name="username" placeholder="Username" onChange={handleChange} />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          onChange={handleChange}
-        />
-        <button type="submit">Login</button>
+        <div className="form-group">
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={form.username}
+            onChange={handleChange}
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={form.password}
+            onChange={handleChange}
+          />
+        </div>
+        
+        <button type="submit">Sign in</button>
       </form>
-
-      <p>
-        Don't have an account?{" "}
-        <span onClick={onSwitchToRegister} style={{ color: "blue", cursor: "pointer" }}>
-          Register here
+      
+      <div className="divider">New to RBAC?</div>
+      
+      <div className="login-footer">
+        <span className="register-link" onClick={onSwitchToRegister}>
+          Create your RBAC account
         </span>
-      </p>
+      </div>
     </div>
   );
 };

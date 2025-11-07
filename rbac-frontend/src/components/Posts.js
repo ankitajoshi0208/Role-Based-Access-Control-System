@@ -1,13 +1,14 @@
 import React, { useEffect, useState, useContext, useCallback } from "react";
 import { AuthContext } from "../components/AuthContext";
-import { getPosts, createPost, deletePost,updatePost } from "../api/api";
-import "./Posts.css"; // import the CSS file
+import { getPosts, createPost, deletePost, updatePost } from "../api/api";
+import "./Posts.css";
 import PostEditModal from "./PostEditModal";
+
 export default function Posts() {
   const { user } = useContext(AuthContext);
   const [posts, setPosts] = useState([]);
   const [form, setForm] = useState({ title: "", body: "" });
-const [editingPost, setEditingPost] = useState(null); // track post being edited
+  const [editingPost, setEditingPost] = useState(null);
   const token = user?.token;
   const role = user?.role;
 
@@ -18,11 +19,11 @@ const [editingPost, setEditingPost] = useState(null); // track post being edited
     } catch (err) {
       console.error("Failed to load posts:", err);
     }
-  }, [token]); // token as dependency since it's used inside fetchPosts
+  }, [token]);
 
   useEffect(() => {
     fetchPosts();
-  }, [fetchPosts]); // Now fetchPosts is a dependency
+  }, [fetchPosts]);
 
   const handleCreate = async (e) => {
     e.preventDefault();
@@ -34,8 +35,9 @@ const [editingPost, setEditingPost] = useState(null); // track post being edited
       console.error("Failed to create post:", err);
     }
   };
+
   const handleEdit = (post) => {
-    setEditingPost(post); // open modal
+    setEditingPost(post);
   };
 
   const handleSave = async (id, updatedData) => {
@@ -58,31 +60,39 @@ const [editingPost, setEditingPost] = useState(null); // track post being edited
 
   return (
     <div className="posts-container">
-      <h2>POSTS DASHBOARD ({role})</h2>
+      <div className="dashboard-header">
+        <div className="header-content">
+          
+          {(role === "admin" || role === "editor") && (
+            <p className="dashboard-subtitle">
+          <h1>Have something in mind? Start sharing it today!</h1>
+            </p>
+          )}
+        </div>
+      </div>
 
       {(role === "admin" || role === "editor") && (
-        <>
-         
-          <form onSubmit={handleCreate} className="posts-form">
-            <input
-              name="title"
-              placeholder="Title"
-              value={form.title}
-              onChange={(e) => setForm({ ...form, title: e.target.value })}
-            />
-            <textarea
-              name="body"
-              placeholder="Body"
-              value={form.body}
-              onChange={(e) => setForm({ ...form, body: e.target.value })}
-            />
+        <form onSubmit={handleCreate} className="posts-form">
+          <input
+            name="title"
+            placeholder="Post title"
+            value={form.title}
+            onChange={(e) => setForm({ ...form, title: e.target.value })}
+          />
+          <textarea
+            name="body"
+            placeholder="Write your post..."
+            value={form.body}
+            onChange={(e) => setForm({ ...form, body: e.target.value })}
+          />
+          <div className="form-actions">
             <button type="submit">Create Post</button>
-          </form>
-        </>
+          </div>
+        </form>
       )}
 
       <ul className="posts-list">
-       {posts.map((p) => (
+        {posts.map((p) => (
           <li key={p._id}>
             <strong>{p.title}</strong>
             <div className="post-author">
@@ -90,11 +100,20 @@ const [editingPost, setEditingPost] = useState(null); // track post being edited
             </div>
             <p>{p.body}</p>
             <div className="post-actions">
-              {(role === "admin" || (role === "editor" && p.authorId?.username === user.username)) && (
-                <button className="edit-button" onClick={() => handleEdit(p)}>Edit</button>
+              {(role === "admin" ||
+                (role === "editor" &&
+                  p.authorId?.username === user.username)) && (
+                <button className="edit-button" onClick={() => handleEdit(p)}>
+                  Edit
+                </button>
               )}
               {role === "admin" && (
-                <button className="delete-button" onClick={() => handleDelete(p._id)}>Delete</button>
+                <button
+                  className="delete-button"
+                  onClick={() => handleDelete(p._id)}
+                >
+                  Delete
+                </button>
               )}
             </div>
           </li>

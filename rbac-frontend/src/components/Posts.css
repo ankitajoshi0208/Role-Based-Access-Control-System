@@ -1,273 +1,325 @@
-.posts-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  background-color: #f8fafc;
-  min-height: 100vh;
+:root {
+  --gold: #f0c14b;
+  --gold-hover: #f7d96e;
+  --text: #1a1a1a;
+  --text-light: #555;
+  --bg: #f6f7fb;
+  --card-bg: #ffffff;
+  --border: #e5e7eb;
+  --shadow: rgba(0, 0, 0, 0.05);
 }
 
-/* Dashboard Header */
-.posts-container h2 {
+body {
+  background: var(--bg);
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  color: var(--text);
+}
+
+/* ===== HEADER ===== */
+.dashboard-header {
+  background: linear-gradient(135deg, #232f3e, #131921);
+  color: #fff;
+  padding: 100px 20px 160px;
   text-align: center;
-  color: #1e293b;
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin-bottom: 45px;
   position: relative;
-  padding-bottom: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
-.posts-container h2::after {
-  content: '';
+.header-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 550px;
+  align-items: center;
+  top: 20px;
+}
+
+.dashboard-subtitle h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.dashboard-header::after {
+  content: "";
   position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background: #3b82f6;
-  border-radius: 2px;
+  bottom: -50px;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(to bottom, rgba(19, 25, 33, 0.95), transparent);
+  filter: blur(4px);
 }
 
-/* Form styling */
+/* ===== NEW MODERN FORM ===== */
 .posts-form {
-  background: white;
-  padding: 30px;
-  border-radius: 16px;
-  margin-bottom: 50px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  background: #fff;
+  border-radius: 0px;
+  padding: 36px 40px;
+  max-width: 900px;
+  margin: -100px auto 60px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border);
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.posts-form:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.1);
+}
+
+/* Header inside form */
+.posts-form::before {
+  content: " Create a New Post";
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #222;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.3px;
+}
+
+/* Inputs & textarea */
 .posts-form input,
 .posts-form textarea {
-  padding: 16px;
-  border-radius: 12px;
-  border: 2px solid #e2e8f0;
-  font-size: 1rem;
   width: 100%;
-  box-sizing: border-box;
-  transition: all 0.3s ease;
-  background: #f8fafc;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 0px;
+  padding: 14px 16px;
+  font-size: 1rem;
   margin-bottom: 20px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.posts-form input:hover,
+.posts-form textarea:hover {
+  background: #fff;
 }
 
 .posts-form input:focus,
 .posts-form textarea:focus {
+  background: #fff;
+  border-color: #f0c14b;
+  box-shadow: 0 0 0 3px rgba(240, 193, 75, 0.25);
   outline: none;
-  border-color: #3b82f6;
-  background: white;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.posts-form input::placeholder,
+.posts-form textarea::placeholder {
+  color: #999;
+  font-size: 0.95rem;
 }
 
 .posts-form textarea {
-  height: 150px;
+  min-height: 180px;
   resize: vertical;
+  line-height: 1.6;
 }
 
-.posts-form button {
-  padding: 14px 28px;
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  color: white;
+/* Form footer actions */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.form-actions button {
+  background: linear-gradient(90deg, #f0c14b, #ffd75e);
   border: none;
-  border-radius: 12px;
-  cursor: pointer;
+  color: #111;
   font-weight: 600;
-  width: 200px;
-  display: block;
-  margin: 30px auto 0;
-  transition: all 0.3s ease;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  padding: 12px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(240, 193, 75, 0.3);
 }
 
-.posts-form button:hover {
+.form-actions button:hover {
+  background: linear-gradient(90deg, #ffd75e, #ffe58b);
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(59, 130, 246, 0.2);
+  box-shadow: 0 6px 18px rgba(240, 193, 75, 0.4);
 }
 
-/* Posts Grid */
+/* ===== POSTS GRID ===== */
 .posts-list {
-  list-style: none;
-  padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px 0 60px;
 }
 
 .posts-list li {
-  background: white;
-  border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 8px var(--shadow);
   transition: all 0.3s ease;
-  border: 1px solid rgba(226, 232, 240, 0.8);
-  display: flex;
-  flex-direction: column;
 }
 
 .posts-list li:hover {
   transform: translateY(-3px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .posts-list strong {
-  font-size: 1.4rem;
-  color: #1e293b;
-  margin-bottom: 12px;
-  font-weight: 700;
-  line-height: 1.4;
+  font-size: 1.3rem;
+  color: var(--text);
+  margin-bottom: 8px;
+  display: block;
 }
 
-.posts-list p {
-  color: #475569;
-  line-height: 1.7;
-  margin: 15px 0;
-  flex-grow: 1;
-}
-
-/* Author info */
 .post-author {
-  font-size: 0.95rem;
-  color: #64748b;
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 10px;
 }
 
-.post-author::before {
-  content: '👤';
-  font-size: 1.1rem;
-}
-
-/* Action Buttons */
 .post-actions {
   display: flex;
-  gap: 12px;
-  margin-top: 20px;
-  padding-top: 20px;
-  border-top: 2px solid #f1f5f9;
+  gap: 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
+  margin-top: 10px;
 }
 
-.edit-button, .delete-button {
-  padding: 10px 20px;
-  border-radius: 10px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: none;
+.edit-button,
+.delete-button {
   flex: 1;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
 }
 
 .edit-button {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  color: white;
+  background: var(--gold);
+  color: #111;
 }
 
 .edit-button:hover {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-  transform: translateY(-1px);
+  background: var(--gold-hover);
 }
 
 .delete-button {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  color: white;
+  background: #dc2626;
+  color: #fff;
 }
 
 .delete-button:hover {
-  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-  transform: translateY(-1px);
+  background: #b91c1c;
 }
 
-/* Modal Styling */
+/* --- Modal Overlay --- */
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(15, 23, 42, 0.8);
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  backdrop-filter: blur(8px);
 }
 
+/* --- Modal Box --- */
 .modal {
-  background: white;
-  padding: 40px;
-  border-radius: 20px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  width: 600px;
-  max-width: 90%;
-  position: relative;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 480px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.25s ease-in-out;
 }
 
-.modal input, 
+.modal h2 {
+  margin-bottom: 1.2rem;
+  font-size: 1.6rem;
+  color: #222;
+  font-weight: 600;
+  text-align: center;
+}
+
+.modal input,
 .modal textarea {
   width: 100%;
-  padding: 15px;
-  margin-bottom: 25px;
-  border-radius: 12px;
-  border: 2px solid #e2e8f0;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  background: #f8fafc;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #333;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.modal input:focus,
+.modal textarea:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
 }
 
 .modal-buttons {
   display: flex;
   justify-content: flex-end;
-  gap: 15px;
-  margin-top: 30px;
+  gap: 10px;
+  margin-top: 0.5rem;
 }
 
 .modal-buttons button {
-  padding: 12px 24px;
-  border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.modal-buttons .save-button {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-  color: white;
   border: none;
+  border-radius: 8px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.modal-buttons .cancel-button {
-  background: #f1f5f9;
-  color: #475569;
-  border: 2px solid #e2e8f0;
+.modal-buttons button[type="submit"] {
+  background: linear-gradient(to right, #4f46e5, #312e81);
+  color: #fff;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .posts-container {
-    padding: 20px 15px;
-  }
-  
-  .posts-container h2 {
-    font-size: 2rem;
-  }
-  
-  .posts-list {
-    grid-template-columns: 1fr;
-  }
-  
-  .modal {
-    padding: 25px;
-  }
+.modal-buttons button[type="submit"]:hover {
+  background: linear-gradient(to right, #4338ca, #1e1b4b);
 }
 
+.cancel-button {
+  background-color: #f3f4f6;
+  color: #333;
+}
+
+.cancel-button:hover {
+  background-color: #e5e7eb;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
